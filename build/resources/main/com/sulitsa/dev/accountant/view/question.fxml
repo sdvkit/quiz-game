@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1089.0" style="-fx-background-color: #041c51;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sulitsa.dev.accountant.controller.QuestionController">
+   <children>
+      <ImageView fx:id="image" fitHeight="670.0" fitWidth="897.0" layoutX="93.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="ring" fitHeight="45.0" fitWidth="43.0" layoutX="441.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="all" fitHeight="45.0" fitWidth="43.0" layoutX="605.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="fifty" fitHeight="45.0" fitWidth="43.0" layoutX="549.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="another" fitHeight="45.0" fitWidth="43.0" layoutX="494.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="answerABtn" alignment="CENTER" layoutX="270.0" layoutY="294.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="169.0" styleClass="answerBtn" stylesheets="@../../../../../style.css" text="Answer A" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="answerDBtn" alignment="CENTER" layoutX="679.0" layoutY="418.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="170.0" styleClass="answerBtn" stylesheets="@../../../../../style.css" text="Answer D" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="answerCBtn" alignment="CENTER" layoutX="270.0" layoutY="418.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="170.0" styleClass="answerBtn" stylesheets="@../../../../../style.css" text="Answer C" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="answerBBtn" alignment="CENTER" layoutX="673.0" layoutY="294.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="170.0" styleClass="answerBtn" stylesheets="@../../../../../style.css" text="Answer B" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label fx:id="questionLabel" alignment="CENTER" layoutX="280.0" layoutY="125.0" prefHeight="98.0" prefWidth="508.0" text="Вопросываываыва !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  !!!" textAlignment="CENTER" textFill="#ff8500" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalCash" layoutX="925.0" layoutY="567.0" text="1000000" textFill="#ffbf00">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="997.0" layoutY="567.0" text="BYN" textFill="#ffbf00">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="questionNumber" layoutX="925.0" layoutY="599.0" prefHeight="26.0" prefWidth="111.0" text="Вопрос: 1/15" textFill="#ffbf00">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

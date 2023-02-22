@@ -1,0 +1,9 @@
+.answerBtn{
+    -fx-background-color: none;
+    -fx-text-fill: white;
+}
+.answerBtn:hover{
+    -fx-text-fill: gold;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
