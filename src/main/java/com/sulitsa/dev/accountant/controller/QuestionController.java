@@ -1,9 +1,7 @@
 package com.sulitsa.dev.accountant.controller;
 
 import java.io.FileInputStream;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sulitsa.dev.accountant.model.Answer;
@@ -28,11 +26,13 @@ public class QuestionController {
     private Label totalCash, questionNumber, questionLabel;
     private int currentStageIndex = 0;
     private int replaceCount = 1;
+    private int fiftyChanceCount = 1;
     private int totalMoney = 500;
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final DataReaderService dataReaderService = new DataReaderService(objectMapper);
     private final List<Stage> stages = new QuestionGeneratorService(dataReaderService).generateQuestions();
     private final Timer timer = new Timer();
+
 
     @SneakyThrows
     @FXML
@@ -45,11 +45,12 @@ public class QuestionController {
 
         setInfo();
 
-        answerABtn.setOnAction(e -> checkAnswer(Answer.A, stages.get(currentStageIndex), this.answerABtn));
-        answerBBtn.setOnAction(e -> checkAnswer(Answer.B, stages.get(currentStageIndex), this.answerBBtn));
-        answerCBtn.setOnAction(e -> checkAnswer(Answer.C, stages.get(currentStageIndex), this.answerCBtn));
-        answerDBtn.setOnAction(e -> checkAnswer(Answer.D, stages.get(currentStageIndex), this.answerDBtn));
-        another.setOnMouseClicked(e -> {
+        answerABtn.setOnAction(event -> checkAnswer(Answer.A, stages.get(currentStageIndex), this.answerABtn));
+        answerBBtn.setOnAction(event -> checkAnswer(Answer.B, stages.get(currentStageIndex), this.answerBBtn));
+        answerCBtn.setOnAction(event -> checkAnswer(Answer.C, stages.get(currentStageIndex), this.answerCBtn));
+        answerDBtn.setOnAction(event -> checkAnswer(Answer.D, stages.get(currentStageIndex), this.answerDBtn));
+
+        another.setOnMouseClicked(event -> {
 
             if(replaceCount == 1) {
                 stages.get(currentStageIndex).setId(stages.get(15).getId());
@@ -60,6 +61,15 @@ public class QuestionController {
                 setInfo();
             }
 
+        });
+        fifty.setOnMouseClicked(event -> {
+            if(fiftyChanceCount == 1) {
+                List<Answer> incorrectAnswers = new ArrayList<>(List.of(Answer.A, Answer.B, Answer.C, Answer.D));
+                incorrectAnswers.removeIf(answer -> answer == stages.get(currentStageIndex).getCorrectAnswer());
+                incorrectAnswers.remove(new Random().nextInt(2));
+                hideIncorrectAnswers(incorrectAnswers);
+                --fiftyChanceCount;
+            }
         });
     }
 
@@ -101,8 +111,17 @@ public class QuestionController {
     }
 
     private void setInfo(){
-        totalCash.setText(String.valueOf(totalMoney));
+        answerABtn.setStyle("-fx-text-fill: white");
+        answerBBtn.setStyle("-fx-text-fill: white");
+        answerCBtn.setStyle("-fx-text-fill: white");
+        answerDBtn.setStyle("-fx-text-fill: white");
 
+        answerABtn.setDisable(false);
+        answerBBtn.setDisable(false);
+        answerCBtn.setDisable(false);
+        answerDBtn.setDisable(false);
+
+        totalCash.setText(String.valueOf(totalMoney));
         questionLabel.setText(stages.get(currentStageIndex).getQuestion());
 
         String[] answerVariants = stages.get(currentStageIndex).getAnswerVariants();
@@ -110,6 +129,27 @@ public class QuestionController {
         answerBBtn.setText(answerVariants[1]);
         answerCBtn.setText(answerVariants[2]);
         answerDBtn.setText(answerVariants[3]);
+    }
+
+    private void hideIncorrectAnswers(List<Answer> incorrectAnswers){
+        for(Answer answer : incorrectAnswers){
+            if(answer == Answer.A){
+                answerABtn.setDisable(true);
+                answerABtn.setStyle("-fx-text-fill: gray");
+            }
+            if(answer == Answer.B){
+                answerBBtn.setDisable(true);
+                answerBBtn.setStyle("-fx-text-fill: gray");
+            }
+            if(answer == Answer.C){
+                answerCBtn.setDisable(true);
+                answerCBtn.setStyle("-fx-text-fill: gray");
+            }
+            if(answer == Answer.D){
+                answerDBtn.setDisable(true);
+                answerDBtn.setStyle("-fx-text-fill: gray");
+            }
+        }
     }
 
 }
