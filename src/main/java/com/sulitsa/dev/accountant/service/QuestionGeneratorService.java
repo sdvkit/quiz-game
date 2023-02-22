@@ -1,37 +1,48 @@
 package com.sulitsa.dev.accountant.service;
 
-
 import com.sulitsa.dev.accountant.model.Stage;
+import lombok.RequiredArgsConstructor;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@RequiredArgsConstructor
 public class QuestionGeneratorService {
-    Random random = new Random();
-    int[] arr = new int[16];
-    int temp;
-    boolean flag;
-    public List<Stage> GenerateQuestion(List<Stage> questions) {
-        for (int i = 0; i < arr.length; i++) {
+
+    private final DataReaderService dataReaderService;
+    private final Random random = new Random();
+    private final int[] questionArray = new int[16];
+
+    public List<Stage> generateQuestions() {
+
+        List<Stage> questions = dataReaderService.readFromFile(new File("src/main/resources/stages.json"));
+        for (int i = 0; i < questionArray.length; i++) {
+            int generatedQuestionIndex;
+            boolean flag;
             do {
-                temp = random.nextInt(99);
+                generatedQuestionIndex = random.nextInt(99);
                 flag = true;
                 for (int j = 0; j < i; j++) {
-                    if (arr[j] == temp) {
+
+                    if (questionArray[j] == generatedQuestionIndex) {
                         flag = false;
                         break;
                     }
                 }
             } while (!flag);
-            arr[i] = temp;
+            questionArray[i] = generatedQuestionIndex;
         }
+
         List<Stage> randomQuestions = new ArrayList<>();
-        for (int i : arr) {
-            for(int j = 0; j < questions.size(); j++){
-                if(i == j){
-                    randomQuestions.add(questions.get(i));
+        for (int questionIndex : questionArray) {
+            for(int i = 0; i < questions.size(); i++){
+
+                if(questionIndex == i){
+                    randomQuestions.add(questions.get(questionIndex));
                 }
+
             }
         }
         return randomQuestions;

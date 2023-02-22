@@ -13,22 +13,22 @@
       <ImageView fx:id="all" fitHeight="45.0" fitWidth="43.0" layoutX="605.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="fifty" fitHeight="45.0" fitWidth="43.0" layoutX="549.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="another" fitHeight="45.0" fitWidth="43.0" layoutX="494.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="answerABtn" alignment="CENTER" layoutX="270.0" layoutY="294.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="169.0" styleClass="answerBtn" stylesheets="@../../../../../style.css" text="Answer A" textFill="WHITE" wrapText="true">
+      <Button fx:id="answerABtn" alignment="CENTER" layoutX="270.0" layoutY="294.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="169.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer A" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="answerDBtn" alignment="CENTER" layoutX="679.0" layoutY="418.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="170.0" styleClass="answerBtn" stylesheets="@../../../../../style.css" text="Answer D" textFill="WHITE" wrapText="true">
+      <Button fx:id="answerDBtn" alignment="CENTER" layoutX="679.0" layoutY="418.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="170.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer D" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="answerCBtn" alignment="CENTER" layoutX="270.0" layoutY="418.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="170.0" styleClass="answerBtn" stylesheets="@../../../../../style.css" text="Answer C" textFill="WHITE" wrapText="true">
+      <Button fx:id="answerCBtn" alignment="CENTER" layoutX="270.0" layoutY="418.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="170.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer C" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="answerBBtn" alignment="CENTER" layoutX="673.0" layoutY="294.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="170.0" styleClass="answerBtn" stylesheets="@../../../../../style.css" text="Answer B" textFill="WHITE" wrapText="true">
+      <Button fx:id="answerBBtn" alignment="CENTER" layoutX="673.0" layoutY="294.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="170.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer B" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
