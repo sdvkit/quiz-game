@@ -24,10 +24,10 @@ public class QuestionController {
     private ImageView fifty, image, another, all, ring;
     @FXML
     private Label totalCash, questionNumber, questionLabel;
-    private int currentStageIndex = 0;
-    private int replaceCount = 1;
-    private int fiftyChanceCount = 1;
-    private int totalMoney = 500;
+    private Integer currentStageIndex = 0;
+    private Boolean replaceCount = true;
+    private Boolean fiftyChanceCount = true;
+    private Integer totalMoney = 500;
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final DataReaderService dataReaderService = new DataReaderService(objectMapper);
     private final List<Stage> stages = new QuestionGeneratorService(dataReaderService).generateQuestions();
@@ -52,24 +52,27 @@ public class QuestionController {
 
         another.setOnMouseClicked(event -> {
 
-            if(replaceCount == 1) {
+            if(replaceCount) {
                 stages.get(currentStageIndex).setId(stages.get(15).getId());
                 stages.get(currentStageIndex).setQuestion(stages.get(15).getQuestion());
                 stages.get(currentStageIndex).setCorrectAnswer(stages.get(15).getCorrectAnswer());
                 stages.get(currentStageIndex).setAnswerVariants(stages.get(15).getAnswerVariants());
-                --replaceCount;
+                replaceCount = false;
                 setInfo();
             }
 
         });
+
         fifty.setOnMouseClicked(event -> {
-            if(fiftyChanceCount == 1) {
+
+            if(fiftyChanceCount) {
                 List<Answer> incorrectAnswers = new ArrayList<>(List.of(Answer.A, Answer.B, Answer.C, Answer.D));
                 incorrectAnswers.removeIf(answer -> answer == stages.get(currentStageIndex).getCorrectAnswer());
                 incorrectAnswers.remove(new Random().nextInt(2));
                 hideIncorrectAnswers(incorrectAnswers);
-                --fiftyChanceCount;
+                fiftyChanceCount = false;
             }
+
         });
     }
 
@@ -131,24 +134,29 @@ public class QuestionController {
         answerDBtn.setText(answerVariants[3]);
     }
 
-    private void hideIncorrectAnswers(List<Answer> incorrectAnswers){
-        for(Answer answer : incorrectAnswers){
+    private void hideIncorrectAnswers(List<Answer> incorrectAnswers) {
+        for(Answer answer : incorrectAnswers) {
+
             if(answer == Answer.A){
                 answerABtn.setDisable(true);
                 answerABtn.setStyle("-fx-text-fill: gray");
             }
+
             if(answer == Answer.B){
                 answerBBtn.setDisable(true);
                 answerBBtn.setStyle("-fx-text-fill: gray");
             }
+
             if(answer == Answer.C){
                 answerCBtn.setDisable(true);
                 answerCBtn.setStyle("-fx-text-fill: gray");
             }
+
             if(answer == Answer.D){
                 answerDBtn.setDisable(true);
                 answerDBtn.setStyle("-fx-text-fill: gray");
             }
+
         }
     }
 
