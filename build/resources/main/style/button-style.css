@@ -7,3 +7,23 @@
     -fx-font-size: 13px;
     -fx-font-weight: bold;
 }
+.startBtn{
+    -fx-text-fill: white;
+    -fx-background-color: #00760c;
+}
+.startBtn:hover{
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-font-size: 29px;
+    -fx-font-weight: bold;
+}
+.exitBtn{
+    -fx-text-fill: white;
+    -fx-background-color: #b40000;
+}
+.exitBtn:hover{
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-font-size: 29px;
+    -fx-font-weight: bold;
+}

@@ -1,6 +1,8 @@
 package com.sulitsa.dev.accountant.controller;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,6 +10,8 @@ import com.sulitsa.dev.accountant.model.Answer;
 import com.sulitsa.dev.accountant.model.Stage;
 import com.sulitsa.dev.accountant.service.DataReaderService;
 import com.sulitsa.dev.accountant.service.QuestionGeneratorService;
+import com.sulitsa.dev.accountant.view.EndGameApplication;
+import com.sulitsa.dev.accountant.view.QuestionApplication;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -45,10 +49,10 @@ public class QuestionController {
 
         setInfo();
 
-        answerABtn.setOnAction(event -> checkAnswer(Answer.A, stages.get(currentStageIndex), this.answerABtn));
-        answerBBtn.setOnAction(event -> checkAnswer(Answer.B, stages.get(currentStageIndex), this.answerBBtn));
-        answerCBtn.setOnAction(event -> checkAnswer(Answer.C, stages.get(currentStageIndex), this.answerCBtn));
-        answerDBtn.setOnAction(event -> checkAnswer(Answer.D, stages.get(currentStageIndex), this.answerDBtn));
+        answerABtn.setOnAction(event -> checkAnswer(Answer.A, stages.get(currentStageIndex), answerABtn));
+        answerBBtn.setOnAction(event -> checkAnswer(Answer.B, stages.get(currentStageIndex), answerBBtn));
+        answerCBtn.setOnAction(event -> checkAnswer(Answer.C, stages.get(currentStageIndex), answerCBtn));
+        answerDBtn.setOnAction(event -> checkAnswer(Answer.D, stages.get(currentStageIndex), answerDBtn));
 
         another.setOnMouseClicked(event -> {
 
@@ -59,6 +63,13 @@ public class QuestionController {
                 stages.get(currentStageIndex).setAnswerVariants(stages.get(15).getAnswerVariants());
                 replaceCount = false;
                 setInfo();
+
+                try {
+                    another.setImage(new Image(new FileInputStream("src/main/resources/images/used-skip.png")));
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+
             }
 
         });
@@ -66,22 +77,29 @@ public class QuestionController {
         fifty.setOnMouseClicked(event -> {
 
             if(fiftyChanceCount) {
+
                 List<Answer> incorrectAnswers = new ArrayList<>(List.of(Answer.A, Answer.B, Answer.C, Answer.D));
                 incorrectAnswers.removeIf(answer -> answer == stages.get(currentStageIndex).getCorrectAnswer());
                 incorrectAnswers.remove(new Random().nextInt(2));
                 hideIncorrectAnswers(incorrectAnswers);
                 fiftyChanceCount = false;
+
+                try {
+                    fifty.setImage(new Image(new FileInputStream("src/main/resources/images/used-fifty.png")));
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
 
         });
     }
 
-    @SneakyThrows
     private void checkAnswer(Answer answer, Stage stage, Button button) {
 
         if(answer == stage.getCorrectAnswer()) {
 
             if(currentStageIndex < 14){
+
                 ++currentStageIndex;
                 button.setStyle("-fx-text-fill: green;");
                 timer.schedule(new TimerTask() {
@@ -95,21 +113,41 @@ public class QuestionController {
                         });
                     }
                 }, 2500L);
+
             }
             else {
-                System.out.println("You Won");
+
+                try {
+                    totalMoney += 1000;
+                    EndGameApplication endGameApplication = new EndGameApplication(totalMoney);
+                    endGameApplication.start(new javafx.stage.Stage());
+                    QuestionApplication.getCurrentStage().close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
             }
 
         }
         else {
-            System.out.println("You lost");
+
             button.setStyle("-fx-text-fill: red;");
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    Platform.runLater(() -> button.getScene().getWindow().hide());
+                    Platform.runLater(() -> {
+                        try {
+                            EndGameApplication endGameApplication = new EndGameApplication(totalMoney);
+                            endGameApplication.start(new javafx.stage.Stage());
+                            QuestionApplication.getCurrentStage().close();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                    });
                 }
             }, 2500L);
+
         }
     }
 
