@@ -3,7 +3,11 @@ package com.sulitsa.dev.accountant.controller;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sulitsa.dev.accountant.model.Answer;
@@ -99,7 +103,6 @@ public class QuestionController {
         if(answer == stage.getCorrectAnswer()) {
 
             if(currentStageIndex < 14){
-
                 ++currentStageIndex;
                 button.setStyle("-fx-text-fill: green;");
                 timer.schedule(new TimerTask() {
@@ -116,21 +119,17 @@ public class QuestionController {
 
             }
             else {
-
                 try {
                     totalMoney += 1000;
                     EndGameApplication endGameApplication = new EndGameApplication(totalMoney);
                     endGameApplication.start(new javafx.stage.Stage());
-                    QuestionApplication.getCurrentStage().close();
+                    totalCash.getScene().getWindow().hide();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
             }
-
         }
         else {
-
             button.setStyle("-fx-text-fill: red;");
             timer.schedule(new TimerTask() {
                 @Override
@@ -139,7 +138,7 @@ public class QuestionController {
                         try {
                             EndGameApplication endGameApplication = new EndGameApplication(totalMoney);
                             endGameApplication.start(new javafx.stage.Stage());
-                            QuestionApplication.getCurrentStage().close();
+                            totalCash.getScene().getWindow().hide();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -147,7 +146,6 @@ public class QuestionController {
                     });
                 }
             }, 2500L);
-
         }
     }
 

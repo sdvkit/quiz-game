@@ -11,11 +11,8 @@ import java.io.IOException;
 @AllArgsConstructor
 public class StartGameApplication extends Application {
 
-    private static Stage currentStage;
-
     @Override
     public void start(Stage stage) throws IOException {
-        currentStage = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(StartGameApplication.class.getResource("start_game_form.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1089, 670);
         stage.setTitle("Become An Accountant");
@@ -23,10 +20,6 @@ public class StartGameApplication extends Application {
         stage.setResizable(false);
         stage.show();
 
-    }
-
-    public static Stage getCurrentStage() {
-        return currentStage;
     }
 
     public static void main(String[] args) {

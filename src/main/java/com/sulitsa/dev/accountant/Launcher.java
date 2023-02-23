@@ -1,6 +1,5 @@
 package com.sulitsa.dev.accountant;
 
-import com.sulitsa.dev.accountant.view.QuestionApplication;
 import com.sulitsa.dev.accountant.view.StartGameApplication;
 
 public class Launcher {
