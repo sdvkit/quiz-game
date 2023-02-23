@@ -15,6 +15,7 @@ import com.sulitsa.dev.accountant.model.Stage;
 import com.sulitsa.dev.accountant.service.DataReaderService;
 import com.sulitsa.dev.accountant.service.QuestionGeneratorService;
 import com.sulitsa.dev.accountant.util.ApplicationContext;
+import com.sulitsa.dev.accountant.view.CallFriendApplication;
 import com.sulitsa.dev.accountant.view.CommunityHelpApplication;
 import com.sulitsa.dev.accountant.view.EndGameApplication;
 import javafx.application.Platform;
@@ -29,16 +30,15 @@ public class QuestionController {
 
     @FXML
     private Button answerCBtn, answerDBtn, answerBBtn, answerABtn;
-    // TODO названия нормальные поставить!!!!!!!!
     @FXML
-    private ImageView fifty, image, another, all, ring;
-    // TODO если элемент – label, то добавить в конец имени Label (например, totalCashLabel)
+    private ImageView fiftyChanceImg, backgroundImg, anotherQuestionImg, communityHelpImg, callFriendImg;
     @FXML
-    private Label totalCash, questionNumber, questionLabel;
+    private Label totalCashLabel, questionNumberLabel, questionLabel;
     private Integer currentStageIndex = 0;
-    private Boolean replaceCount = true;
-    private Boolean fiftyChanceCount = true;
+    private Boolean replaceChance = true;
+    private Boolean fiftyChance = true;
     private Boolean communityHelp = true;
+    private Boolean callFriend = true;
     private Integer totalMoney = 500;
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final DataReaderService dataReaderService = new DataReaderService(objectMapper);
@@ -49,11 +49,11 @@ public class QuestionController {
     @SneakyThrows
     @FXML
     void initialize() {
-        image.setImage(new Image(new FileInputStream("src/main/resources/images/background.png")));
-        ring.setImage(new Image(new FileInputStream("src/main/resources/images/telephone-call.png")));
-        all.setImage(new Image(new FileInputStream("src/main/resources/images/awareness.png")));
-        fifty.setImage(new Image(new FileInputStream("src/main/resources/images/fifty.png")));
-        another.setImage(new Image(new FileInputStream("src/main/resources/images/next-button.png")));
+        backgroundImg.setImage(new Image(new FileInputStream("src/main/resources/images/background.png")));
+        callFriendImg.setImage(new Image(new FileInputStream("src/main/resources/images/telephone-call.png")));
+        communityHelpImg.setImage(new Image(new FileInputStream("src/main/resources/images/awareness.png")));
+        fiftyChanceImg.setImage(new Image(new FileInputStream("src/main/resources/images/fifty.png")));
+        anotherQuestionImg.setImage(new Image(new FileInputStream("src/main/resources/images/next-button.png")));
 
         setApplicationStyle();
 
@@ -62,18 +62,18 @@ public class QuestionController {
         answerCBtn.setOnAction(event -> checkAnswer(Answer.C, stages.get(currentStageIndex), answerCBtn));
         answerDBtn.setOnAction(event -> checkAnswer(Answer.D, stages.get(currentStageIndex), answerDBtn));
 
-        another.setOnMouseClicked(event -> {
+        anotherQuestionImg.setOnMouseClicked(event -> {
 
-            if(replaceCount) {
+            if(replaceChance) {
                 stages.get(currentStageIndex).setId(stages.get(15).getId());
                 stages.get(currentStageIndex).setQuestion(stages.get(15).getQuestion());
                 stages.get(currentStageIndex).setCorrectAnswer(stages.get(15).getCorrectAnswer());
                 stages.get(currentStageIndex).setAnswerVariants(stages.get(15).getAnswerVariants());
-                replaceCount = false;
+                replaceChance = false;
                 setApplicationStyle();
 
                 try {
-                    another.setImage(new Image(new FileInputStream("src/main/resources/images/used-skip.png")));
+                    anotherQuestionImg.setImage(new Image(new FileInputStream("src/main/resources/images/used-skip.png")));
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
@@ -82,40 +82,62 @@ public class QuestionController {
 
         });
 
-        fifty.setOnMouseClicked(event -> {
+        fiftyChanceImg.setOnMouseClicked(event -> {
 
-            if(fiftyChanceCount) {
-                List<Answer> incorrectAnswers = new ArrayList<>(List.of(Answer.A, Answer.B, Answer.C, Answer.D));
-                incorrectAnswers.removeIf(answer -> answer == stages.get(currentStageIndex).getCorrectAnswer());
-                incorrectAnswers.remove(new Random().nextInt(2));
-                hideIncorrectAnswers(incorrectAnswers);
-                fiftyChanceCount = false;
+            if(fiftyChance) {
 
-                try {
-                    fifty.setImage(new Image(new FileInputStream("src/main/resources/images/used-fifty.png")));
+                try{
+                    List<Answer> incorrectAnswers = new ArrayList<>(List.of(Answer.A, Answer.B, Answer.C, Answer.D));
+                    incorrectAnswers.removeIf(answer -> answer == stages.get(currentStageIndex).getCorrectAnswer());
+                    incorrectAnswers.remove(new Random().nextInt(2));
+                    hideIncorrectAnswers(incorrectAnswers);
+                    fiftyChance = false;
+                    fiftyChanceImg.setImage(new Image(new FileInputStream("src/main/resources/images/used-fifty.png")));
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
-            }
 
+            }
         });
 
-        all.setOnMouseClicked(event -> {
+        communityHelpImg.setOnMouseClicked(event -> {
 
             if (communityHelp) {
+
                 try {
                     ApplicationContext.setCurrentStage(stages.get(currentStageIndex));
                     CommunityHelpApplication communityHelpApplication = new CommunityHelpApplication();
                     communityHelpApplication.start(new javafx.stage.Stage());
-                    communityHelp = false; // TODO менять иконку на серую после использования
+                    communityHelp = false;
+                    communityHelpImg.setImage(new Image(new FileInputStream("src/main/resources/images/used-awareness.png")));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+
+            }
+        });
+
+        callFriendImg.setOnMouseClicked(event -> {
+
+            if(callFriend) {
+
+                try {
+                    ApplicationContext.setCurrentStage(stages.get(currentStageIndex));
+                    callFriendImg.setImage(new Image(new FileInputStream("src/main/resources/images/used-telephone.png")));
+                    CallFriendApplication callFriendApplication = new CallFriendApplication();
+                    callFriendApplication.start(new javafx.stage.Stage());
+                    callFriend = false;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
             }
         });
     }
 
     private void checkAnswer(Answer answer, Stage stage, Button button) {
+
+        setDisableButtons();
 
         if(answer == stage.getCorrectAnswer()) {
             checkQuestionIndex(button);
@@ -137,7 +159,7 @@ public class QuestionController {
                 @Override
                 public void run() {
                     Platform.runLater(() -> {
-                        questionNumber.setText("Вопрос: " + (currentStageIndex + 1) + "/15");
+                        questionNumberLabel.setText("Вопрос: " + (currentStageIndex + 1) + "/15");
                         totalMoney += 1000;
                         setApplicationStyle();
                         button.setStyle("-fx-text-fill: white;");
@@ -148,7 +170,7 @@ public class QuestionController {
             totalMoney += 1000;
             EndGameApplication endGameApplication = new EndGameApplication(totalMoney);
             endGameApplication.start(new javafx.stage.Stage());
-            totalCash.getScene().getWindow().hide();
+            totalCashLabel.getScene().getWindow().hide();
         }
 
     }
@@ -162,7 +184,7 @@ public class QuestionController {
                     try {
                         EndGameApplication endGameApplication = new EndGameApplication(totalMoney);
                         endGameApplication.start(new javafx.stage.Stage());
-                        totalCash.getScene().getWindow().hide();
+                        totalCashLabel.getScene().getWindow().hide();
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -183,7 +205,7 @@ public class QuestionController {
         answerCBtn.setDisable(false);
         answerDBtn.setDisable(false);
 
-        totalCash.setText(String.valueOf(totalMoney));
+        totalCashLabel.setText(String.valueOf(totalMoney));
         questionLabel.setText(stages.get(currentStageIndex).getQuestion());
 
         String[] answerVariants = stages.get(currentStageIndex).getAnswerVariants();
@@ -191,6 +213,13 @@ public class QuestionController {
         answerBBtn.setText(answerVariants[1]);
         answerCBtn.setText(answerVariants[2]);
         answerDBtn.setText(answerVariants[3]);
+    }
+
+    private void setDisableButtons(){
+        answerABtn.setDisable(true);
+        answerBBtn.setDisable(true);
+        answerCBtn.setDisable(true);
+        answerDBtn.setDisable(true);
     }
 
     private void hideIncorrectAnswers(List<Answer> incorrectAnswers) {

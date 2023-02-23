@@ -10,24 +10,24 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1089.0" style="-fx-background-color: #041c51;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sulitsa.dev.accountant.controller.QuestionController">
    <children>
-      <ImageView fx:id="image" fitHeight="670.0" fitWidth="897.0" layoutX="93.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="ring" fitHeight="45.0" fitWidth="43.0" layoutX="441.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="backgroundImg" fitHeight="738.0" fitWidth="1142.0" layoutX="19.0" layoutY="-48.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="callFriendImg" fitHeight="45.0" fitWidth="43.0" layoutX="441.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></ImageView>
-      <ImageView fx:id="all" fitHeight="45.0" fitWidth="43.0" layoutX="605.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="communityHelpImg" fitHeight="45.0" fitWidth="43.0" layoutX="605.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></ImageView>
-      <ImageView fx:id="fifty" fitHeight="45.0" fitWidth="43.0" layoutX="549.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="fiftyChanceImg" fitHeight="45.0" fitWidth="43.0" layoutX="549.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></ImageView>
-      <ImageView fx:id="another" fitHeight="45.0" fitWidth="43.0" layoutX="494.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="anotherQuestionImg" fitHeight="45.0" fitWidth="43.0" layoutX="494.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></ImageView>
-      <Button fx:id="answerABtn" alignment="CENTER" layoutX="270.0" layoutY="294.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="169.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer A" textFill="WHITE" wrapText="true">
+      <Button fx:id="answerABtn" alignment="CENTER" layoutX="229.0" layoutY="272.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="190.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer A" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -35,7 +35,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <Button fx:id="answerDBtn" alignment="CENTER" layoutX="679.0" layoutY="418.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="170.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer D" textFill="WHITE" wrapText="true">
+      <Button fx:id="answerDBtn" alignment="CENTER" layoutX="713.0" layoutY="417.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="182.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer D" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -43,7 +43,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <Button fx:id="answerCBtn" alignment="CENTER" layoutX="270.0" layoutY="418.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="170.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer C" textFill="WHITE" wrapText="true">
+      <Button fx:id="answerCBtn" alignment="CENTER" layoutX="229.0" layoutY="417.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="181.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer C" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -51,7 +51,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <Button fx:id="answerBBtn" alignment="CENTER" layoutX="673.0" layoutY="294.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="170.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer B" textFill="WHITE" wrapText="true">
+      <Button fx:id="answerBBtn" alignment="CENTER" layoutX="703.0" layoutY="272.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="170.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer B" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -59,12 +59,12 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <Label fx:id="questionLabel" alignment="CENTER" layoutX="280.0" layoutY="125.0" prefHeight="98.0" prefWidth="508.0" text="Вопросываываыва !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  !!!" textAlignment="CENTER" textFill="#ff8500" wrapText="true">
+      <Label fx:id="questionLabel" alignment="CENTER" layoutX="280.0" layoutY="80.0" prefHeight="98.0" prefWidth="508.0" text="Вопросываываыва !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  !!!" textAlignment="CENTER" textFill="#ff8500" wrapText="true">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="totalCash" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="925.0" layoutY="567.0" prefHeight="26.0" prefWidth="69.0" style="-fx-text-alignment: right;" text="1000000" textFill="#ffac00">
+      <Label fx:id="totalCashLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="925.0" layoutY="567.0" prefHeight="26.0" prefWidth="69.0" style="-fx-text-alignment: right;" text="1000000" textFill="#ffac00">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -80,7 +80,7 @@
             <DropShadow />
          </effect>
       </Label>
-      <Label fx:id="questionNumber" layoutX="925.0" layoutY="599.0" prefHeight="26.0" prefWidth="111.0" text="Вопрос: 1/15" textFill="#ffac00">
+      <Label fx:id="questionNumberLabel" layoutX="925.0" layoutY="599.0" prefHeight="26.0" prefWidth="111.0" text="Вопрос: 1/15" textFill="#ffac00">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
