@@ -1,6 +1,7 @@
 package com.sulitsa.dev.accountant.view;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,6 +16,10 @@ public class QuestionApplication extends Application {
         stage.setTitle("Become An Accountant");
         stage.setScene(scene);
         stage.setResizable(false);
+        stage.setOnCloseRequest(event -> {
+            Platform.exit();
+            System.exit(0);
+        });
         stage.show();
     }
 

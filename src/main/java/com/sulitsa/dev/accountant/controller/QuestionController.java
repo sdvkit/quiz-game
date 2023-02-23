@@ -14,6 +14,8 @@ import com.sulitsa.dev.accountant.model.Answer;
 import com.sulitsa.dev.accountant.model.Stage;
 import com.sulitsa.dev.accountant.service.DataReaderService;
 import com.sulitsa.dev.accountant.service.QuestionGeneratorService;
+import com.sulitsa.dev.accountant.util.ApplicationContext;
+import com.sulitsa.dev.accountant.view.CommunityHelpApplication;
 import com.sulitsa.dev.accountant.view.EndGameApplication;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -27,13 +29,16 @@ public class QuestionController {
 
     @FXML
     private Button answerCBtn, answerDBtn, answerBBtn, answerABtn;
+    // TODO названия нормальные поставить!!!!!!!!
     @FXML
     private ImageView fifty, image, another, all, ring;
+    // TODO если элемент – label, то добавить в конец имени Label (например, totalCashLabel)
     @FXML
     private Label totalCash, questionNumber, questionLabel;
     private Integer currentStageIndex = 0;
     private Boolean replaceCount = true;
     private Boolean fiftyChanceCount = true;
+    private Boolean communityHelp = true;
     private Integer totalMoney = 500;
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final DataReaderService dataReaderService = new DataReaderService(objectMapper);
@@ -94,6 +99,20 @@ public class QuestionController {
             }
 
         });
+
+        all.setOnMouseClicked(event -> {
+
+            if (communityHelp) {
+                try {
+                    ApplicationContext.setCurrentStage(stages.get(currentStageIndex));
+                    CommunityHelpApplication communityHelpApplication = new CommunityHelpApplication();
+                    communityHelpApplication.start(new javafx.stage.Stage());
+                    communityHelp = false; // TODO менять иконку на серую после использования
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
     }
 
     private void checkAnswer(Answer answer, Stage stage, Button button) {
@@ -125,9 +144,7 @@ public class QuestionController {
                     });
                 }
             }, 2500L);
-        }
-
-        else {
+        } else {
             totalMoney += 1000;
             EndGameApplication endGameApplication = new EndGameApplication(totalMoney);
             endGameApplication.start(new javafx.stage.Stage());
