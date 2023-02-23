@@ -24,6 +24,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.util.Duration;
 import lombok.SneakyThrows;
 
 public class QuestionController {
@@ -34,12 +38,14 @@ public class QuestionController {
     private ImageView fiftyChanceImg, backgroundImg, anotherQuestionImg, communityHelpImg, callFriendImg;
     @FXML
     private Label totalCashLabel, questionNumberLabel, questionLabel;
+    @FXML
+    private MediaView backSoundPlayer, wonSoundPlayer, lostSoundPlayer, callingSoundPlayer, communitySoundPlayer;
     private Integer currentStageIndex = 0;
     private Boolean replaceChance = true;
     private Boolean fiftyChance = true;
     private Boolean communityHelp = true;
     private Boolean callFriend = true;
-    private Integer totalMoney = 500;
+    private Integer totalMoney = 0;
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final DataReaderService dataReaderService = new DataReaderService(objectMapper);
     private final List<Stage> stages = new QuestionGeneratorService(dataReaderService).generateQuestions();
@@ -49,6 +55,15 @@ public class QuestionController {
     @SneakyThrows
     @FXML
     void initialize() {
+        backSoundPlayer.setMediaPlayer(new MediaPlayer(new Media(getClass().getResource("/sound/back_sound.mp3").toURI().toString())));
+        wonSoundPlayer.setMediaPlayer(new MediaPlayer(new Media(getClass().getResource("/sound/guess_sound.mp3").toURI().toString())));
+        lostSoundPlayer.setMediaPlayer(new MediaPlayer(new Media(getClass().getResource("/sound/fail_sound.mp3").toURI().toString())));
+        callingSoundPlayer.setMediaPlayer(new MediaPlayer(new Media(getClass().getResource("/sound/calling_sound.mp3").toURI().toString())));
+        communitySoundPlayer.setMediaPlayer(new MediaPlayer(new Media(getClass().getResource("/sound/discussion_sound.mp3").toURI().toString())));
+
+        backSoundPlayer.getMediaPlayer().setCycleCount(100);
+        backSoundPlayer.getMediaPlayer().play();
+
         backgroundImg.setImage(new Image(new FileInputStream("src/main/resources/images/background.png")));
         callFriendImg.setImage(new Image(new FileInputStream("src/main/resources/images/telephone-call.png")));
         communityHelpImg.setImage(new Image(new FileInputStream("src/main/resources/images/awareness.png")));
@@ -105,6 +120,9 @@ public class QuestionController {
             if (communityHelp) {
 
                 try {
+                    communitySoundPlayer.getMediaPlayer().play();
+                    communitySoundPlayer.getMediaPlayer().setStopTime(Duration.millis(3000));
+
                     ApplicationContext.setCurrentStage(stages.get(currentStageIndex));
                     CommunityHelpApplication communityHelpApplication = new CommunityHelpApplication();
                     communityHelpApplication.start(new javafx.stage.Stage());
@@ -122,6 +140,9 @@ public class QuestionController {
             if(callFriend) {
 
                 try {
+                    callingSoundPlayer.getMediaPlayer().setStopTime(Duration.millis(8000));
+                    callingSoundPlayer.getMediaPlayer().play();
+
                     ApplicationContext.setCurrentStage(stages.get(currentStageIndex));
                     callFriendImg.setImage(new Image(new FileInputStream("src/main/resources/images/used-telephone.png")));
                     CallFriendApplication callFriendApplication = new CallFriendApplication();
@@ -140,10 +161,15 @@ public class QuestionController {
         setDisableButtons();
 
         if(answer == stage.getCorrectAnswer()) {
+            wonSoundPlayer.getMediaPlayer().play();
+
             checkQuestionIndex(button);
         }
 
         else {
+            lostSoundPlayer.getMediaPlayer().play();
+            backSoundPlayer.getMediaPlayer().stop();
+
             endGame(button);
         }
 
@@ -195,6 +221,11 @@ public class QuestionController {
     }
 
     private void setApplicationStyle(){
+        wonSoundPlayer.getMediaPlayer().stop();
+        lostSoundPlayer.getMediaPlayer().stop();
+        callingSoundPlayer.getMediaPlayer().stop();
+        communitySoundPlayer.getMediaPlayer().stop();
+
         answerABtn.setStyle("-fx-text-fill: white");
         answerBBtn.setStyle("-fx-text-fill: white");
         answerCBtn.setStyle("-fx-text-fill: white");

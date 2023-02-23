@@ -6,23 +6,18 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CallFriendController {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private ImageView phoneImg;
@@ -51,7 +46,7 @@ public class CallFriendController {
                     resultLabel.setText("Ваш друг думает что ответ:\n"+finalAnswer.get(finalVariant));
                 });
             }
-        }, 2500L);
+        }, 8500L);
 
         exitBtn.setOnAction(event -> {
             exitBtn.getScene().getWindow().hide();
