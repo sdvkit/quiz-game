@@ -15,7 +15,6 @@ import com.sulitsa.dev.accountant.model.Stage;
 import com.sulitsa.dev.accountant.service.DataReaderService;
 import com.sulitsa.dev.accountant.service.QuestionGeneratorService;
 import com.sulitsa.dev.accountant.view.EndGameApplication;
-import com.sulitsa.dev.accountant.view.QuestionApplication;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -51,7 +50,7 @@ public class QuestionController {
         fifty.setImage(new Image(new FileInputStream("src/main/resources/images/fifty.png")));
         another.setImage(new Image(new FileInputStream("src/main/resources/images/next-button.png")));
 
-        setInfo();
+        setApplicationStyle();
 
         answerABtn.setOnAction(event -> checkAnswer(Answer.A, stages.get(currentStageIndex), answerABtn));
         answerBBtn.setOnAction(event -> checkAnswer(Answer.B, stages.get(currentStageIndex), answerBBtn));
@@ -66,7 +65,7 @@ public class QuestionController {
                 stages.get(currentStageIndex).setCorrectAnswer(stages.get(15).getCorrectAnswer());
                 stages.get(currentStageIndex).setAnswerVariants(stages.get(15).getAnswerVariants());
                 replaceCount = false;
-                setInfo();
+                setApplicationStyle();
 
                 try {
                     another.setImage(new Image(new FileInputStream("src/main/resources/images/used-skip.png")));
@@ -81,7 +80,6 @@ public class QuestionController {
         fifty.setOnMouseClicked(event -> {
 
             if(fiftyChanceCount) {
-
                 List<Answer> incorrectAnswers = new ArrayList<>(List.of(Answer.A, Answer.B, Answer.C, Answer.D));
                 incorrectAnswers.removeIf(answer -> answer == stages.get(currentStageIndex).getCorrectAnswer());
                 incorrectAnswers.remove(new Random().nextInt(2));
@@ -101,55 +99,63 @@ public class QuestionController {
     private void checkAnswer(Answer answer, Stage stage, Button button) {
 
         if(answer == stage.getCorrectAnswer()) {
-
-            if(currentStageIndex < 14){
-                ++currentStageIndex;
-                button.setStyle("-fx-text-fill: green;");
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        Platform.runLater(() -> {
-                            questionNumber.setText("Вопрос: " + (currentStageIndex + 1) + "/15");
-                            totalMoney += 1000;
-                            setInfo();
-                            button.setStyle("-fx-text-fill: white;");
-                        });
-                    }
-                }, 2500L);
-
-            }
-            else {
-                try {
-                    totalMoney += 1000;
-                    EndGameApplication endGameApplication = new EndGameApplication(totalMoney);
-                    endGameApplication.start(new javafx.stage.Stage());
-                    totalCash.getScene().getWindow().hide();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+            checkQuestionIndex(button);
         }
+
         else {
-            button.setStyle("-fx-text-fill: red;");
+            endGame(button);
+        }
+
+    }
+
+    @SneakyThrows
+    private void checkQuestionIndex(Button button) {
+
+        if(currentStageIndex < 14){
+            ++currentStageIndex;
+            button.setStyle("-fx-text-fill: green;");
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
                     Platform.runLater(() -> {
-                        try {
-                            EndGameApplication endGameApplication = new EndGameApplication(totalMoney);
-                            endGameApplication.start(new javafx.stage.Stage());
-                            totalCash.getScene().getWindow().hide();
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-
+                        questionNumber.setText("Вопрос: " + (currentStageIndex + 1) + "/15");
+                        totalMoney += 1000;
+                        setApplicationStyle();
+                        button.setStyle("-fx-text-fill: white;");
                     });
                 }
             }, 2500L);
         }
+
+        else {
+            totalMoney += 1000;
+            EndGameApplication endGameApplication = new EndGameApplication(totalMoney);
+            endGameApplication.start(new javafx.stage.Stage());
+            totalCash.getScene().getWindow().hide();
+        }
+
     }
 
-    private void setInfo(){
+    private void endGame(Button button) {
+        button.setStyle("-fx-text-fill: red;");
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    try {
+                        EndGameApplication endGameApplication = new EndGameApplication(totalMoney);
+                        endGameApplication.start(new javafx.stage.Stage());
+                        totalCash.getScene().getWindow().hide();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                });
+            }
+        }, 2500L);
+    }
+
+    private void setApplicationStyle(){
         answerABtn.setStyle("-fx-text-fill: white");
         answerBBtn.setStyle("-fx-text-fill: white");
         answerCBtn.setStyle("-fx-text-fill: white");
@@ -179,6 +185,7 @@ public class QuestionController {
             }
 
             if(answer == Answer.B){
+
                 answerBBtn.setDisable(true);
                 answerBBtn.setStyle("-fx-text-fill: gray");
             }
