@@ -58,3 +58,13 @@ jlink {
 jlinkZip {
     group = 'distribution'
 }
+
+task customFatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'com.sulitsa.dev.accountant.Launcher'
+    }
+    baseName = 'quiz-game'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
