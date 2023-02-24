@@ -9,7 +9,7 @@
 <?import javafx.scene.media.MediaView?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1089.0" style="-fx-background-color: #041c51;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sulitsa.dev.accountant.controller.QuestionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1089.0" style="-fx-background-color: #09204f;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sulitsa.dev.accountant.controller.QuestionController">
    <children>
       <MediaView fx:id="backSoundPlayer" fitHeight="200.0" fitWidth="200.0" layoutX="72.0" layoutY="22.0" />
       <MediaView fx:id="wonSoundPlayer" fitHeight="200.0" fitWidth="200.0" layoutX="19.0" layoutY="251.0" />

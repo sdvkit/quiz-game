@@ -12,7 +12,7 @@
     -fx-background-color: #00760c;
 }
 .startBtn:hover{
-    -fx-text-fill: black;
+    -fx-text-fill: green;
     -fx-background-color: white;
     -fx-font-size: 29px;
     -fx-font-weight: bold;
@@ -22,7 +22,17 @@
     -fx-background-color: #b40000;
 }
 .exitBtn:hover{
-    -fx-text-fill: black;
+    -fx-text-fill: red;
+    -fx-background-color: white;
+    -fx-font-size: 29px;
+    -fx-font-weight: bold;
+}
+.ruleBtn{
+    -fx-text-fill: white;
+    -fx-background-color: #b40000;
+}
+.ruleBtn:hover{
+    -fx-text-fill: blue;
     -fx-background-color: white;
     -fx-font-size: 29px;
     -fx-font-weight: bold;
