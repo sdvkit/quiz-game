@@ -17,24 +17,24 @@
       <MediaView fx:id="callingSoundPlayer" fitHeight="200.0" fitWidth="200.0" layoutX="19.0" layoutY="393.0" />
       <MediaView fx:id="communitySoundPlayer" fitHeight="200.0" fitWidth="200.0" layoutY="393.0" />
       <MediaView fx:id="replaceSoundPlayer" fitHeight="200.0" fitWidth="200.0" layoutX="14.0" layoutY="384.0" />
-      <ImageView fx:id="backgroundImg" fitHeight="738.0" fitWidth="1142.0" layoutX="19.0" layoutY="-48.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="callFriendImg" fitHeight="45.0" fitWidth="43.0" layoutX="441.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="backgroundImg" fitHeight="738.0" fitWidth="1142.0" layoutX="19.0" layoutY="-18.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="callFriendImg" fitHeight="45.0" fitWidth="43.0" layoutX="441.0" layoutY="588.0" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></ImageView>
-      <ImageView fx:id="communityHelpImg" fitHeight="45.0" fitWidth="43.0" layoutX="605.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="communityHelpImg" fitHeight="45.0" fitWidth="43.0" layoutX="605.0" layoutY="588.0" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></ImageView>
-      <ImageView fx:id="fiftyChanceImg" fitHeight="45.0" fitWidth="43.0" layoutX="549.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="fiftyChanceImg" fitHeight="45.0" fitWidth="43.0" layoutX="549.0" layoutY="588.0" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></ImageView>
-      <ImageView fx:id="anotherQuestionImg" fitHeight="45.0" fitWidth="43.0" layoutX="494.0" layoutY="567.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="anotherQuestionImg" fitHeight="45.0" fitWidth="43.0" layoutX="494.0" layoutY="588.0" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="OPEN_HAND" />
          </cursor></ImageView>
-      <Button fx:id="answerABtn" alignment="CENTER" layoutX="229.0" layoutY="272.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="190.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer A" textFill="WHITE" wrapText="true">
+      <Button fx:id="answerABtn" alignment="CENTER" layoutX="407.0" layoutY="197.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="283.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer A" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -42,7 +42,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <Button fx:id="answerDBtn" alignment="CENTER" layoutX="713.0" layoutY="417.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="182.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer D" textFill="WHITE" wrapText="true">
+      <Button fx:id="answerDBtn" alignment="CENTER" layoutX="410.0" layoutY="499.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="283.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer D" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -50,7 +50,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <Button fx:id="answerCBtn" alignment="CENTER" layoutX="229.0" layoutY="417.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="181.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer C" textFill="WHITE" wrapText="true">
+      <Button fx:id="answerCBtn" alignment="CENTER" layoutX="410.0" layoutY="400.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="283.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer C" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -58,7 +58,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <Button fx:id="answerBBtn" alignment="CENTER" layoutX="703.0" layoutY="272.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="170.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer B" textFill="WHITE" wrapText="true">
+      <Button fx:id="answerBBtn" alignment="CENTER" layoutX="407.0" layoutY="300.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="283.0" styleClass="answerBtn" stylesheets="@../../../../../style/button-style.css" text="Answer B" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -66,39 +66,41 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </Button>
-      <Label fx:id="questionLabel" alignment="CENTER" layoutX="280.0" layoutY="80.0" prefHeight="98.0" prefWidth="508.0" text="Вопросываываыва !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  !!!" textAlignment="CENTER" textFill="#ff8500" wrapText="true">
+      <Label fx:id="questionLabel" alignment="CENTER" layoutX="280.0" layoutY="38.0" prefHeight="122.0" prefWidth="508.0" text="Вопросываываыва !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  !!!" textAlignment="CENTER" textFill="#ff8500" wrapText="true">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="totalCashLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="925.0" layoutY="567.0" prefHeight="26.0" prefWidth="69.0" style="-fx-text-alignment: right;" text="1000000" textFill="#ffac00">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
+      <AnchorPane layoutX="875.0" layoutY="553.0" prefHeight="107.0" prefWidth="200.0" style="-fx-border-color: #ffac00; -fx-border-width: 3;">
          <effect>
             <DropShadow />
          </effect>
-      </Label>
-      <Label layoutX="997.0" layoutY="567.0" text="BYN" textFill="#ffac00">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-         <effect>
-            <DropShadow />
-         </effect>
-      </Label>
-      <Label fx:id="questionNumberLabel" layoutX="925.0" layoutY="599.0" prefHeight="26.0" prefWidth="111.0" text="Вопрос: 1/15" textFill="#ffac00">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-         <effect>
-            <DropShadow />
-         </effect>
-      </Label>
-      <AnchorPane layoutX="875.0" layoutY="535.0" prefHeight="121.0" prefWidth="200.0" style="-fx-border-color: #ffac00; -fx-border-width: 3;">
-         <effect>
-            <DropShadow />
-         </effect>
+         <children>
+            <Label fx:id="totalCashLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="45.0" layoutY="30.0" prefHeight="26.0" prefWidth="69.0" style="-fx-text-alignment: right;" text="1000000" textFill="#ffac00">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+            <Label layoutX="119.0" layoutY="30.0" text="BYN" textFill="#ffac00">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+            <Label fx:id="questionNumberLabel" layoutX="54.0" layoutY="55.0" prefHeight="26.0" prefWidth="111.0" text="Вопрос: 1/15" textFill="#ffac00">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+         </children>
       </AnchorPane>
    </children>
 </AnchorPane>
