@@ -51,7 +51,6 @@ public class QuestionController {
     private final List<Stage> stages = new QuestionGeneratorService(dataReaderService).generateQuestions();
     private final Timer timer = new Timer();
 
-
     @SneakyThrows
     @FXML
     void initialize() {
@@ -61,7 +60,6 @@ public class QuestionController {
         callingSoundPlayer.setMediaPlayer(new MediaPlayer(new Media(getClass().getResource("/sound/calling_sound.mp3").toURI().toString())));
         communitySoundPlayer.setMediaPlayer(new MediaPlayer(new Media(getClass().getResource("/sound/discussion_sound.mp3").toURI().toString())));
         replaceSoundPlayer.setMediaPlayer(new MediaPlayer(new Media(getClass().getResource("/sound/replace_question_sound.mp3").toURI().toString())));
-
 
         backSoundPlayer.getMediaPlayer().setCycleCount(100);
         backSoundPlayer.getMediaPlayer().play();
@@ -104,11 +102,10 @@ public class QuestionController {
         fiftyChanceImg.setOnMouseClicked(event -> {
 
             if(fiftyChance) {
-
                 try{
                     replaceSoundPlayer.getMediaPlayer().stop();
                     replaceSoundPlayer.getMediaPlayer().play();
-                    List<Answer> incorrectAnswers = new ArrayList<>(List.of(Answer.A, Answer.B, Answer.C, Answer.D));
+                    final List<Answer> incorrectAnswers = new ArrayList<>(List.of(Answer.A, Answer.B, Answer.C, Answer.D));
                     incorrectAnswers.removeIf(answer -> answer == stages.get(currentStageIndex).getCorrectAnswer());
                     incorrectAnswers.remove(new Random().nextInt(2));
                     hideIncorrectAnswers(incorrectAnswers);
@@ -117,27 +114,24 @@ public class QuestionController {
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
-
             }
         });
 
         communityHelpImg.setOnMouseClicked(event -> {
 
             if (communityHelp) {
-
                 try {
                     communitySoundPlayer.getMediaPlayer().play();
                     communitySoundPlayer.getMediaPlayer().setStopTime(Duration.millis(3000));
 
                     ApplicationContext.setCurrentStage(stages.get(currentStageIndex));
-                    CommunityHelpApplication communityHelpApplication = new CommunityHelpApplication();
+                    final CommunityHelpApplication communityHelpApplication = new CommunityHelpApplication();
                     communityHelpApplication.start(new javafx.stage.Stage());
                     communityHelp = false;
                     communityHelpImg.setImage(new Image(new FileInputStream("src/main/resources/images/used-awareness.png")));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
             }
         });
 
@@ -151,7 +145,7 @@ public class QuestionController {
 
                     ApplicationContext.setCurrentStage(stages.get(currentStageIndex));
                     callFriendImg.setImage(new Image(new FileInputStream("src/main/resources/images/used-telephone.png")));
-                    CallFriendApplication callFriendApplication = new CallFriendApplication();
+                    final CallFriendApplication callFriendApplication = new CallFriendApplication();
                     callFriendApplication.start(new javafx.stage.Stage());
                     callFriend = false;
                 } catch (IOException e) {
@@ -163,19 +157,14 @@ public class QuestionController {
     }
 
     private void checkAnswer(Answer answer, Stage stage, Button button) {
-
         setDisableButtons();
 
         if(answer == stage.getCorrectAnswer()) {
             wonSoundPlayer.getMediaPlayer().play();
-
             checkQuestionIndex(button);
-        }
-
-        else {
+        } else {
             lostSoundPlayer.getMediaPlayer().play();
             backSoundPlayer.getMediaPlayer().stop();
-
             endGame(button);
         }
 
@@ -200,7 +189,8 @@ public class QuestionController {
             }, 2500L);
         } else {
             totalMoney += 1000;
-            EndGameApplication endGameApplication = new EndGameApplication(totalMoney);
+            ApplicationContext.setTotalMoney(totalMoney);
+            final EndGameApplication endGameApplication = new EndGameApplication();
             endGameApplication.start(new javafx.stage.Stage());
             totalCashLabel.getScene().getWindow().hide();
         }
@@ -214,7 +204,8 @@ public class QuestionController {
             public void run() {
                 Platform.runLater(() -> {
                     try {
-                        EndGameApplication endGameApplication = new EndGameApplication(totalMoney);
+                        ApplicationContext.setTotalMoney(totalMoney);
+                        final EndGameApplication endGameApplication = new EndGameApplication();
                         endGameApplication.start(new javafx.stage.Stage());
                         totalCashLabel.getScene().getWindow().hide();
                     } catch (IOException e) {
@@ -245,7 +236,7 @@ public class QuestionController {
         totalCashLabel.setText(String.valueOf(totalMoney));
         questionLabel.setText(stages.get(currentStageIndex).getQuestion());
 
-        String[] answerVariants = stages.get(currentStageIndex).getAnswerVariants();
+        final String[] answerVariants = stages.get(currentStageIndex).getAnswerVariants();
         answerABtn.setText(answerVariants[0]);
         answerBBtn.setText(answerVariants[1]);
         answerCBtn.setText(answerVariants[2]);
@@ -285,5 +276,4 @@ public class QuestionController {
 
         }
     }
-
 }

@@ -3,27 +3,32 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1089.0" style="-fx-background-color: #041c51;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sulitsa.dev.accountant.controller.EndController">
    <children>
-      <AnchorPane layoutX="337.0" layoutY="144.0" prefHeight="313.0" prefWidth="414.0" style="-fx-background-color: #041c51;">
+      <AnchorPane layoutX="337.0" layoutY="19.0" prefHeight="278.0" prefWidth="414.0" style="-fx-background-color: #041c51;">
          <effect>
             <DropShadow />
          </effect>
+         <children>
+            <Label fx:id="winLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" prefHeight="250.0" prefWidth="336.0" text="Ваш выйгрыш: " textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="49.0" />
+               </font>
+            </Label>
+         </children>
       </AnchorPane>
-      <Label fx:id="winLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="376.0" layoutY="176.0" prefHeight="250.0" prefWidth="336.0" text="Ваш выйгрыш: " textAlignment="CENTER" textFill="WHITE" wrapText="true">
-         <font>
-            <Font name="System Bold" size="49.0" />
-         </font>
-      </Label>
-      <Button fx:id="restartBtn" layoutX="337.0" layoutY="486.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="200.0" styleClass="startBtn" stylesheets="@../../../../../style/button-style.css" text="Заново" textFill="WHITE">
+      <ImageView fx:id="restartButtonImg" fitHeight="272.0" fitWidth="1107.0" layoutX="-16.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="exitButtonImg" fitHeight="272.0" fitWidth="1107.0" layoutX="-18.0" layoutY="424.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="exitBtn" layoutX="371.0" layoutY="485.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="328.0" style="-fx-background-color: none;" styleClass="exitBtn" stylesheets="@../../../../../style/button-style.css" text="Выход" textFill="WHITE">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </Button>
-      <Button fx:id="exitBtn" layoutX="551.0" layoutY="486.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="200.0" styleClass="exitBtn" stylesheets="@../../../../../style/button-style.css" text="Выход" textFill="WHITE">
+      <Button fx:id="restartBtn" layoutX="371.0" layoutY="373.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="328.0" style="-fx-background-color: none;" styleClass="startBtn" stylesheets="@../../../../../style/button-style.css" text="Заново" textFill="WHITE">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>

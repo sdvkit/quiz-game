@@ -13,8 +13,8 @@ public class CommunityHelpApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(CommunityHelpApplication.class.getResource("community_help.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        final FXMLLoader fxmlLoader = new FXMLLoader(CommunityHelpApplication.class.getResource("community_help.fxml"));
+        final Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Community help");
         stage.setScene(scene);
         stage.setResizable(false);

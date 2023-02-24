@@ -21,7 +21,7 @@
             <Font name="System Bold" size="28.0" />
          </font>
       </Button>
-      <Button fx:id="startBtn1" layoutX="388.0" layoutY="381.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="341.0" style="-fx-background-color: none;" styleClass="ruleBtn" stylesheets="@../../../../../style/button-style.css" text="Правила" textFill="WHITE">
+      <Button fx:id="rulesBtn" layoutX="388.0" layoutY="381.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="341.0" style="-fx-background-color: none;" styleClass="ruleBtn" stylesheets="@../../../../../style/button-style.css" text="Правила" textFill="WHITE">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>

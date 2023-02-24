@@ -10,14 +10,12 @@ import java.util.Random;
 
 @RequiredArgsConstructor
 public class QuestionGeneratorService {
-
     private final DataReaderService dataReaderService;
     private final Random random = new Random();
     private final int[] questionArray = new int[16];
 
     public List<Stage> generateQuestions() {
-
-        List<Stage> questions = dataReaderService.readFromFile(new File("src/main/resources/stages.json"));
+        final List<Stage> questions = dataReaderService.readFromFile(new File("src/main/resources/stages.json"));
         for (int i = 0; i < questionArray.length; i++) {
             int generatedQuestionIndex;
             boolean flag;
@@ -35,7 +33,7 @@ public class QuestionGeneratorService {
             questionArray[i] = generatedQuestionIndex;
         }
 
-        List<Stage> randomQuestions = new ArrayList<>();
+        final List<Stage> randomQuestions = new ArrayList<>();
         for (int questionIndex : questionArray) {
             for(int i = 0; i < questions.size(); i++){
 
@@ -45,6 +43,7 @@ public class QuestionGeneratorService {
 
             }
         }
+
         return randomQuestions;
     }
 }

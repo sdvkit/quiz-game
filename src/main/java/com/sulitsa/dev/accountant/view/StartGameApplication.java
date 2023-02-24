@@ -14,8 +14,8 @@ public class StartGameApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(StartGameApplication.class.getResource("start_game_form.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1089, 670);
+        final FXMLLoader fxmlLoader = new FXMLLoader(StartGameApplication.class.getResource("start_game_form.fxml"));
+        final Scene scene = new Scene(fxmlLoader.load(), 1089, 670);
         stage.setTitle("Become An Accountant");
         stage.setScene(scene);
         stage.setResizable(false);
