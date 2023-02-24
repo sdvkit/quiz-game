@@ -39,7 +39,7 @@ public class QuestionController {
     @FXML
     private Label totalCashLabel, questionNumberLabel, questionLabel;
     @FXML
-    private MediaView backSoundPlayer, wonSoundPlayer, lostSoundPlayer, callingSoundPlayer, communitySoundPlayer;
+    private MediaView backSoundPlayer, wonSoundPlayer, lostSoundPlayer, callingSoundPlayer, communitySoundPlayer, replaceSoundPlayer;
     private Integer currentStageIndex = 0;
     private Boolean replaceChance = true;
     private Boolean fiftyChance = true;
@@ -60,6 +60,8 @@ public class QuestionController {
         lostSoundPlayer.setMediaPlayer(new MediaPlayer(new Media(getClass().getResource("/sound/fail_sound.mp3").toURI().toString())));
         callingSoundPlayer.setMediaPlayer(new MediaPlayer(new Media(getClass().getResource("/sound/calling_sound.mp3").toURI().toString())));
         communitySoundPlayer.setMediaPlayer(new MediaPlayer(new Media(getClass().getResource("/sound/discussion_sound.mp3").toURI().toString())));
+        replaceSoundPlayer.setMediaPlayer(new MediaPlayer(new Media(getClass().getResource("/sound/replace_question_sound.mp3").toURI().toString())));
+
 
         backSoundPlayer.getMediaPlayer().setCycleCount(100);
         backSoundPlayer.getMediaPlayer().play();
@@ -80,6 +82,8 @@ public class QuestionController {
         anotherQuestionImg.setOnMouseClicked(event -> {
 
             if(replaceChance) {
+                replaceSoundPlayer.getMediaPlayer().stop();
+                replaceSoundPlayer.getMediaPlayer().play();
                 stages.get(currentStageIndex).setId(stages.get(15).getId());
                 stages.get(currentStageIndex).setQuestion(stages.get(15).getQuestion());
                 stages.get(currentStageIndex).setCorrectAnswer(stages.get(15).getCorrectAnswer());
@@ -102,6 +106,8 @@ public class QuestionController {
             if(fiftyChance) {
 
                 try{
+                    replaceSoundPlayer.getMediaPlayer().stop();
+                    replaceSoundPlayer.getMediaPlayer().play();
                     List<Answer> incorrectAnswers = new ArrayList<>(List.of(Answer.A, Answer.B, Answer.C, Answer.D));
                     incorrectAnswers.removeIf(answer -> answer == stages.get(currentStageIndex).getCorrectAnswer());
                     incorrectAnswers.remove(new Random().nextInt(2));
